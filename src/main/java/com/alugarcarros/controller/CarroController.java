@@ -28,5 +28,13 @@ public class CarroController {
         return carroService.inserir(novoCarro);
     }
 
-    //TODO Update e Delete
+    @PutMapping
+    public boolean atualizar(@RequestBody CarroVO carroAtualizar) throws CampoInvalidoException{
+        return carroService.atualizar(carroAtualizar) != null;
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean excluir(@PathVariable Integer id){
+        return carroService.excluir(id);
+    }
 }
