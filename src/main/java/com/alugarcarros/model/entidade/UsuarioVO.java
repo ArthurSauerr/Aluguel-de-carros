@@ -13,9 +13,12 @@ public class UsuarioVO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    private String email;
+    private String senha;
     private LocalDate dt_nascimento;
     private String cpf;
     private String cnh;
+    private boolean adm;
 
     @JsonBackReference
     @OneToMany(mappedBy = "usuarioComCarro")
@@ -23,12 +26,15 @@ public class UsuarioVO {
 
     public UsuarioVO() { super(); }
 
-    public UsuarioVO(Integer id, String nome, LocalDate dt_nascimento, String cpf, String cnh, List<CarroVO> carros) {
+    public UsuarioVO(Integer id, String nome, String email, String senha, LocalDate dt_nascimento, String cpf, String cnh, boolean adm, List<CarroVO> carros) {
         this.id = id;
         this.nome = nome;
+        this.email = email;
+        this.senha = senha;
         this.dt_nascimento = dt_nascimento;
         this.cpf = cpf;
         this.cnh = cnh;
+        this.adm = adm;
         this.carros = carros;
     }
 
@@ -78,5 +84,29 @@ public class UsuarioVO {
 
     public void setCarros(List<CarroVO> carros) {
         this.carros = carros;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public boolean isAdm() {
+        return adm;
+    }
+
+    public void setAdm(boolean adm) {
+        this.adm = adm;
     }
 }

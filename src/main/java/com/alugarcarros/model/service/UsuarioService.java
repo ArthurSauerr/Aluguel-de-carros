@@ -34,8 +34,11 @@ public class UsuarioService {
     private void validarCamposObrigatorios(UsuarioVO usuario) throws CampoInvalidoException{
         String mensagemValidacao = "";
         mensagemValidacao += validarCampoString(usuario.getNome(), "nome");
+        mensagemValidacao += validarCampoString(usuario.getEmail(), "email");
+        mensagemValidacao += validarCampoString(usuario.getSenha(), "senha");
         mensagemValidacao += validarCampoString(usuario.getCpf(), "cpf");
         mensagemValidacao += validarCampoString(usuario.getCnh(), "cnh");
+        mensagemValidacao += validarCampoBoolean(usuario.isAdm(), "adm");
 
         if(!mensagemValidacao.isEmpty()){
             throw new CampoInvalidoException(mensagemValidacao);
@@ -45,6 +48,13 @@ public class UsuarioService {
 
     private String validarCampoString(String valorCampo, String nomeCampo) {
         if(valorCampo == null || valorCampo.trim().isEmpty()){
+            return "Informe o " +nomeCampo + " \n";
+        }
+        return "";
+    }
+
+    private String validarCampoBoolean(Boolean valorCampo, String nomeCampo){
+        if(valorCampo == null){
             return "Informe o " +nomeCampo + " \n";
         }
         return "";
