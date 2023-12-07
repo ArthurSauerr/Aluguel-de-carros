@@ -21,6 +21,9 @@ public class CarroVO {
     private double valor_semanal;
     private boolean disponivel;
 
+    @Column(columnDefinition = "LONGTEXT")
+    private String imagem;
+
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private UsuarioVO usuarioComCarro;
