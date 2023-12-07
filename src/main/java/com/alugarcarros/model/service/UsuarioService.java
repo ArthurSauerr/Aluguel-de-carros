@@ -1,7 +1,6 @@
 package com.alugarcarros.model.service;
 
-import com.alugarcarros.exceptions.CampoInvalidoException;
-import com.alugarcarros.model.entidade.CarroVO;
+import com.alugarcarros.exceptions.AlugarCarrosException;
 import com.alugarcarros.model.entidade.UsuarioVO;
 import com.alugarcarros.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,11 @@ public class UsuarioService {
 
     public List<UsuarioVO> listarTodos(){ return usuarioRepository.findAll(); }
 
-    public UsuarioVO inserir(UsuarioVO novoUsuario) throws CampoInvalidoException{
+    public UsuarioVO inserir(UsuarioVO novoUsuario) throws AlugarCarrosException {
         return usuarioRepository.save(novoUsuario);
     }
 
-    public UsuarioVO atualizar(UsuarioVO usuarioAtualizar) throws CampoInvalidoException{
+    public UsuarioVO atualizar(UsuarioVO usuarioAtualizar) throws AlugarCarrosException {
         validarCamposObrigatorios(usuarioAtualizar);
         return usuarioRepository.save(usuarioAtualizar);
     }
@@ -31,14 +30,15 @@ public class UsuarioService {
         return true;
     }
 
-    private void validarCamposObrigatorios(UsuarioVO usuario) throws CampoInvalidoException{
+    private void validarCamposObrigatorios(UsuarioVO usuario) throws AlugarCarrosException {
         String mensagemValidacao = "";
         mensagemValidacao += validarCampoString(usuario.getNome(), "nome");
         mensagemValidacao += validarCampoString(usuario.getCpf(), "cpf");
         mensagemValidacao += validarCampoString(usuario.getCnh(), "cnh");
+        mensagemValidacao += validarCampoString(usuario.getSenha(), "senha");
 
         if(!mensagemValidacao.isEmpty()){
-            throw new CampoInvalidoException(mensagemValidacao);
+            throw new AlugarCarrosException(mensagemValidacao);
         }
 
     }

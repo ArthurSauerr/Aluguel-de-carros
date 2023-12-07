@@ -29,6 +29,9 @@ create table alugarCarros.carros (
 insert into alugarCarros.carros (fabricante, modelo, tipo, placa, cor, valor_semanal, disponivel)
 values ('BMW', 'I8', 'Luxo', 'ABC1234', 'Preto', 400, true);
 
+insert into alugarCarros.carros (fabricante, modelo, tipo, placa, cor, valor_semanal, disponivel, id_usuario)
+values ('BMW', 'I8', 'Luxo', 'ABC1234', 'Preto', 400, true, 1);
+
 insert into alugarCarros.usuarios(nome, dt_nascimento, cpf, cnh)
 values ('Arthur', '2003-09-10', 11747407950, 12345678910);
 

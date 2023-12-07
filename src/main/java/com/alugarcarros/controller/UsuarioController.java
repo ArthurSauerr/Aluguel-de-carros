@@ -1,6 +1,6 @@
 package com.alugarcarros.controller;
 
-import com.alugarcarros.exceptions.CampoInvalidoException;
+import com.alugarcarros.exceptions.AlugarCarrosException;
 import com.alugarcarros.model.entidade.UsuarioVO;
 import com.alugarcarros.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public UsuarioVO cadastrar(@RequestBody UsuarioVO novoUsuario) throws CampoInvalidoException{
+    public UsuarioVO cadastrar(@RequestBody UsuarioVO novoUsuario) throws AlugarCarrosException {
         return usuarioService.inserir(novoUsuario);
     }
 
     @PutMapping
-    public boolean atualizar(@RequestBody UsuarioVO usuarioAtualizar) throws CampoInvalidoException{
+    public boolean atualizar(@RequestBody UsuarioVO usuarioAtualizar) throws AlugarCarrosException {
         return usuarioService.atualizar(usuarioAtualizar) != null;
     }
 

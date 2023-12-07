@@ -1,6 +1,6 @@
 package com.alugarcarros.model.service;
 
-import com.alugarcarros.exceptions.CampoInvalidoException;
+import com.alugarcarros.exceptions.AlugarCarrosException;
 import com.alugarcarros.model.entidade.CarroVO;
 import com.alugarcarros.model.repository.CarroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,11 @@ public class CarroService {
         return carroRepository.findAll();
     }
 
-    public CarroVO inserir(CarroVO novoCarro) throws CampoInvalidoException {
+    public CarroVO inserir(CarroVO novoCarro) throws AlugarCarrosException {
         return carroRepository.save(novoCarro);
     }
 
-    public CarroVO atualizar(CarroVO carroAtualizar) throws CampoInvalidoException{
+    public CarroVO atualizar(CarroVO carroAtualizar) throws AlugarCarrosException {
         validarCamposObrigatorios(carroAtualizar);
         return carroRepository.save(carroAtualizar);
     }
@@ -32,7 +32,7 @@ public class CarroService {
         return true;
     }
 
-    private void validarCamposObrigatorios(CarroVO carro) throws CampoInvalidoException{
+    private void validarCamposObrigatorios(CarroVO carro) throws AlugarCarrosException {
         String mensagemValidacao = "";
         mensagemValidacao += validarCampoString(carro.getFabricante(), "fabricante");
         mensagemValidacao += validarCampoString(carro.getModelo(), "modelo");
@@ -43,7 +43,7 @@ public class CarroService {
         mensagemValidacao += validarCampoBoolean(carro.isDisponivel(), "disponivel");
 
         if(!mensagemValidacao.isEmpty()){
-            throw new CampoInvalidoException(mensagemValidacao);
+            throw new AlugarCarrosException(mensagemValidacao);
         }
 
     }
